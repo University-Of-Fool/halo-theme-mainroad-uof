@@ -45,7 +45,7 @@ spec:
           value: theme-mainroad
     - group: bottombar
       label: 底部
-      formSchema: 
+      formSchema:
         - $formkit: checkbox
           name: showBottom
           id: showBottom
@@ -56,4 +56,4 @@ spec:
           name: desc
           if: "$get(showBottom).value"
           label: 底部代码
-          value: <div class="container footer__container flex"><div class="footer__copyright">© 2023 Mainroad.<span class="footer__copyright-credits">Power By <a href="https://halo.run/" rel="nofollow noopener"target="_blank">Halo</a> and <a href="https://github.com/liuchangfitcloud/theme-mainroad" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div></div>      
+          value: <div class="container footer__container flex"><div class="footer__copyright">© 2023 Mainroad.<span class="footer__copyright-credits">Powered By <a href="https://halo.run/" rel="nofollow noopener"target="_blank">Halo</a> with <a href="https://github.com/liuchangfitcloud/theme-mainroad" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span></div></div>
