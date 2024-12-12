@@ -1,19 +1,22 @@
-# Mainroad
+# Mainroad (UOF)
 
 **Mainroad** 是一个响应式、简单、干净且以内容为中心的[halo](https://halo.run/) 主题是基于
 [Vimux Mainroad](https://github.com/Vimux/Mainroad) 改造而来.
 
+这是由[愚笨大学](https://uof.edu.kg/)改造的版本。
+
 **特征:**
 
-+ 响应式设计
-+ 自定义菜单
-+ [支持评论](https://github.com/halo-dev/plugin-comment-widget)
-+ [支持搜索](https://github.com/halo-dev/plugin-search-widget)
-+ [支持友链](https://github.com/halo-sigs/plugin-links)
-+ [支持图库](https://github.com/halo-sigs/plugin-photos)
-+ [支持瞬间](https://github.com/halo-sigs/plugin-moments)
+- 响应式设计
+- 自定义菜单
+- [支持评论](https://github.com/halo-dev/plugin-comment-widget)
+- [支持搜索](https://github.com/halo-dev/plugin-search-widget)
+- [支持友链](https://github.com/halo-sigs/plugin-links)
+- [支持图库](https://github.com/halo-sigs/plugin-photos)
+- [支持瞬间](https://github.com/halo-sigs/plugin-moments)
 
 ## 预览
+
 ![首页](./images/theme-mainroad-1.jpeg)
 
 ![分类](./images/theme-mainroad-2.jpeg)
