@@ -1,114 +1,168 @@
 <!DOCTYPE html>
 <html lang="en" th:fragment="html (headtitle,content)">
-
-<head>
-  <link rel="stylesheet" th:href="@{/assets/dist/style.css}" href="./assets/dist/style.css" />
-  <script th:src="@{/assets/dist/main.iife.js}"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:text="${headtitle}"></title>
-  <!-- <link th:if="${not #strings.isEmpty(site.logo)}" th:href="@{${site.logo}}" rel="icon">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Noto+Sans+SC:wght@100..900&family=Noto+Serif+SC:wght@200..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/assets/dist/style.css}" href="./assets/dist/style.css" />
+    <script th:src="@{/assets/dist/main.iife.js}"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${headtitle}"></title>
+    <!-- <link th:if="${not #strings.isEmpty(site.logo)}" th:href="@{${site.logo}}" rel="icon">
   <link th:if="${#strings.isEmpty(site.logo)}" th:href="@{/assets/images/favicon.png}" rel="icon"> -->
-</head>
+  </head>
 
-<body class="body js">
-  <div class="container container--outer">
-    <!-- 头部包含菜单 -->
-    <header class="header">
-      <div class="container header__container">
-        <div class="logo">
-          <a class="logo__link" href="/" title="Mainroad" rel="home">
-            <div class="logo__item logo__text">
-              <div class="logo__title" th:text="${site.title}"></div>
-              <div class="logo__tagline" th:unless="${#strings.isEmpty(site.subtitle)}" th:text="${site.subtitle}"></div>
-            </div>
+  <body class="body js">
+    <div class="container container--outer">
+      <!-- 头部包含菜单 -->
+      <header class="header">
+        <div class="container header__container">
+          <div class="logo">
+            <a class="logo__link" href="/" title="${site.title}" rel="home">
+              <div class="logo__item logo__text">
+                <div class="logo__title" th:if="${not #strings.isEmpty(site.logo)}">
+                  <img class="logo__img" th:src="${site.logo}" alt="Site Logo" />
+                </div>
+                <div class="logo__title" th:if="${#strings.isEmpty(site.logo)}" th:text="${site.title}"></div>
+                <div
+                  class="logo__tagline"
+                  th:unless="${#strings.isEmpty(site.subtitle)}"
+                  th:text="${site.subtitle}"
+                ></div>
+              </div>
+            </a>
+          </div>
+          <nav class="menu" th:with="menu = ${menuFinder.getPrimary()}">
+            <button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+              <span class="menu__btn-title" tabindex="-1">菜单</span>
+            </button>
+            <ul class="menu__list" th:with="menuItems = ${menu.menuItems}">
+              <th:block
+                th:with="path=${#ctx.getExchange().getRequest().getRequestPath()}, queryString=${#objects.nullSafe(#ctx.getExchange().getRequest().getQueryString(),'')}"
+              >
+                <li
+                  th:class="${menuItem.status.href == (path + (#strings.isEmpty(queryString) or (path eq '/photos') or (path eq '/moments') ? '' : '?' + queryString))} ? 'menu__item--active' : ''"
+                  th:each="menuItem : ${menuItems}"
+                >
+                  <a class="menu__link" th:href="@{${menuItem.status.href}}" th:target="${menuItem.spec.target?.value}">
+                    <span class="menu__text" th:text="${menuItem.status.displayName}"></span>
+                  </a>
+                </li>
+              </th:block>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div class="wrapper flex">
+        <!-- 内容 -->
+        <th:block th:replace="${content}" />
+      </div>
+      <!--底部-->
+      <footer class="footer" th:if="${theme.config.bottombar.showBottom}">
+        <th:block th:utext="${theme.config.bottombar.desc}"> </th:block>
+        <halo:footer />
+      </footer>
+      <footer class="footer" th:unless="${theme.config.bottombar.showBottom}">
+        <halo:footer />
+      </footer>
+    </div>
+
+    <div class="overlay" id="imgWin">
+      <div class="close-btn" onclick="closeImagewindow(imgWin)">
+        <a>
+          <svg
+            t="1704180517967"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="2457"
+            width="32"
+            height="32"
+          >
+            <path
+              d="M576 512l277.333333 277.333333-64 64-277.333333-277.333333L234.666667 853.333333 170.666667 789.333333l277.333333-277.333333L170.666667 234.666667 234.666667 170.666667l277.333333 277.333333L789.333333 170.666667 853.333333 234.666667 576 512z"
+              fill="#ffffff"
+              p-id="2458"
+            ></path>
+          </svg>
+        </a>
+      </div>
+      <div class="page-btn">
+        <div>
+          <a class="pre" onclick="imgPre()">
+            <svg
+              t="1704790449056"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="2434"
+              width="32"
+              height="32"
+            >
+              <path
+                d="M767.411612 130.775657 700.386529 63.852903 253.723194 510.516239 700.386529 957.179574 767.411612 890.25682 387.773359 510.516239Z"
+                p-id="2435"
+                fill="#ffffff"
+              ></path>
+            </svg>
           </a>
         </div>
-        <nav class="menu" th:with="menu = ${menuFinder.getPrimary()}">
-          <button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-            <span class="menu__btn-title" tabindex="-1">菜单</span>
-          </button>
-          <ul class="menu__list" th:with="menuItems = ${menu.menuItems}">
-            <th:block th:with="path=${#ctx.getExchange().getRequest().getRequestPath()}, queryString=${#objects.nullSafe(#ctx.getExchange().getRequest().getQueryString(),'')}">
-              <li th:class="${menuItem.status.href == (path + (#strings.isEmpty(queryString) or (path eq '/photos') or (path eq '/moments') ? '' : '?' + queryString))} ? 'menu__item--active' : ''" th:each="menuItem : ${menuItems}">
-                <a class="menu__link" th:href="@{${menuItem.status.href}}" th:target="${menuItem.spec.target?.value}">
-                  <span class="menu__text" th:text="${menuItem.status.displayName}"></span>
-                </a>
-              </li>
-            </th:block>
-          </ul>
-        </nav>
+        <div>
+          <a class="next" onclick="imgNext()">
+            <svg
+              t="1704790687541"
+              class="icon"
+              viewBox="0 0 1024 1024"
+              version="1.1"
+              xmlns="http://www.w3.org/2000/svg"
+              p-id="3857"
+              width="32"
+              height="32"
+            >
+              <path
+                d="M633.361447 510.516239 253.723194 890.25682 320.748276 957.179574 767.411612 510.516239 320.748276 63.852903 253.723194 130.775657Z"
+                p-id="3858"
+                fill="#ffffff"
+              ></path>
+            </svg>
+          </a>
+        </div>
       </div>
-    </header>
-    <div class="wrapper flex">
-      <!-- 内容 -->
-      <th:block th:replace="${content}" />
+      <div class="image-box">
+        <img src="/upload/2.9-restore-by-backup.webp" />
+      </div>
     </div>
-    <!--底部-->
-    <footer class="footer" th:if="${theme.config.bottombar.showBottom}">
-      <th:block th:utext="${theme.config.bottombar.desc}">
-      </th:block>
-      <halo:footer />
-    </footer>
-    <footer class="footer" th:unless="${theme.config.bottombar.showBottom}">
-      <halo:footer />
-    </footer>
-  </div>
-  
-  
-  <div class="overlay" id="imgWin">
-    <div class="close-btn" onclick="closeImagewindow(imgWin)">
-      <a>
-        <svg t="1704180517967" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2457"
-          width="32" height="32">
-          <path
-            d="M576 512l277.333333 277.333333-64 64-277.333333-277.333333L234.666667 853.333333 170.666667 789.333333l277.333333-277.333333L170.666667 234.666667 234.666667 170.666667l277.333333 277.333333L789.333333 170.666667 853.333333 234.666667 576 512z"
-            fill="#ffffff" p-id="2458"></path>
-        </svg>
-      </a>
-    </div>
-    <div class="page-btn">
-      <div>
-        <a class="pre" onclick="imgPre()">
-          <svg t="1704790449056" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-            p-id="2434" width="32" height="32">
+
+    <div class="overlay" id="videoWin">
+      <div class="close-btn" onclick="closeImagewindow(videoWin)">
+        <a>
+          <svg
+            t="1704180517967"
+            class="icon"
+            viewBox="0 0 1024 1024"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            p-id="2457"
+            width="32"
+            height="32"
+          >
             <path
-              d="M767.411612 130.775657 700.386529 63.852903 253.723194 510.516239 700.386529 957.179574 767.411612 890.25682 387.773359 510.516239Z"
-              p-id="2435" fill="#ffffff"></path>
+              d="M576 512l277.333333 277.333333-64 64-277.333333-277.333333L234.666667 853.333333 170.666667 789.333333l277.333333-277.333333L170.666667 234.666667 234.666667 170.666667l277.333333 277.333333L789.333333 170.666667 853.333333 234.666667 576 512z"
+              fill="#ffffff"
+              p-id="2458"
+            ></path>
           </svg>
         </a>
       </div>
-      <div>
-        <a class="next" onclick="imgNext()">
-          <svg t="1704790687541" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-            p-id="3857" width="32" height="32">
-            <path
-              d="M633.361447 510.516239 253.723194 890.25682 320.748276 957.179574 767.411612 510.516239 320.748276 63.852903 253.723194 130.775657Z"
-              p-id="3858" fill="#ffffff"></path>
-          </svg>
-        </a>
+      <div class="video-box">
+        <video controls />
       </div>
     </div>
-    <div class="image-box">
-      <img src="/upload/2.9-restore-by-backup.webp" />
-    </div>
-  </div>
-
-  <div class="overlay" id="videoWin">
-    <div class="close-btn" onclick="closeImagewindow(videoWin)">
-      <a>
-        <svg t="1704180517967" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-          p-id="2457" width="32" height="32">
-          <path
-            d="M576 512l277.333333 277.333333-64 64-277.333333-277.333333L234.666667 853.333333 170.666667 789.333333l277.333333-277.333333L170.666667 234.666667 234.666667 170.666667l277.333333 277.333333L789.333333 170.666667 853.333333 234.666667 576 512z"
-            fill="#ffffff" p-id="2458"></path>
-        </svg>
-      </a>
-    </div>
-    <div class="video-box">
-      <video controls/>
-    </div>
-  </div>
-</body>
-
+  </body>
 </html>

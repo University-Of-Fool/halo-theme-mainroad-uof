@@ -12,3 +12,8 @@ repositories {
 dependencies {
   implementation('org.thymeleaf:thymeleaf:3.0.12.RELEASE')
 }
+
+java {
+  sourceCompatibility = '17'
+  targetCompatibility = '17'
+}
