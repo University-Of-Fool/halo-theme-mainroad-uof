@@ -29,7 +29,7 @@
     "build": "tsc && vite build",
     "dev": "vite build --watch",
     "lint": "eslint ./src --ext .js,.cjs,.mjs,.ts,.cts,.mts --ignore-path .gitignore",
-    "prettier": "prettier --write './src/**/*.{js,ts,css,json,ml,yaml,html}' './templates/**/*.html'"
+    "prettier": "prettier --write ./src/**/*.{js,ts,css,json,ml,yaml,html} ./templates/**/*.html"
   },
   "devDependencies": {
     "@types/node": "18.11.9",

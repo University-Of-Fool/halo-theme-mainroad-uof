@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(headtitle=${site.title},content = ~{::content})}">
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: html(headtitle=${site.title},content = ~{::content})}"
+>
   <th:block th:fragment="content">
     <th:block>
       <div class="primary">
@@ -7,23 +10,26 @@
           <article class="list__item post" th:each="post : ${postList}">
             <figure class="list__thumbnail thumbnail" th:unless="${#strings.isEmpty(post.spec.cover)}">
               <a class="thumbnail__link" th:href="${post.status.permalink}">
-                <img class="thumbnail__image" th:src="@{${post.spec.cover}}" th:alt="${post.spec.title}">
+                <img class="thumbnail__image" th:src="@{${post.spec.cover}}" th:alt="${post.spec.title}" />
               </a>
             </figure>
             <header class="list__header">
               <h2 class="list__title post__title">
-                <a th:href="${post.status.permalink}" rel="bookmark" th:text="${post.spec.title}">
-                </a>
+                <a th:href="${post.status.permalink}" rel="bookmark" th:text="${post.spec.title}"> </a>
               </h2>
               <!-- <p class="list__lead post__lead" th:unless="${#strings.isEmpty(post.spec.excerpt.raw)}" th:text="${post.spec.excerpt.raw}"></p> -->
               <div class="list__meta meta">
                 <div class="meta__item-datetime meta__item">
                   <svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28">
                     <path
-                      d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z">
-                    </path>
+                      d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"
+                    ></path>
                   </svg>
-                  <time class="meta__text" th:datetime="${post.spec.publishTime}" th:text="${#dates.format(post.spec.publishTime,'yyyy MM dd HH:mm:ss')}"></time>
+                  <time
+                    class="meta__text"
+                    th:datetime="${post.spec.publishTime}"
+                    th:text="${#dates.format(post.spec.publishTime,'yyyy MM dd HH:mm:ss')}"
+                  ></time>
                 </div>
                 <div class="meta__item-categories meta__item" th:unless="${#lists.isEmpty(post.categories)}">
                   <th:block th:with="categories = ${post.categories}">
@@ -32,8 +38,13 @@
                     </svg>
                     <span class="meta__text">
                       <th:block th:each="categorie : ${categories}">
-                        <a class="meta__link" th:href="@{${categorie.status.permalink}}" rel="category"
-                          th:text="${categorie.spec.displayName}"></a>&nbsp;
+                        <a
+                          class="meta__link"
+                          th:href="@{${categorie.status.permalink}}"
+                          rel="category"
+                          th:text="${categorie.spec.displayName}"
+                        ></a
+                        >&nbsp;
                       </th:block>
                     </span>
                   </th:block>
