@@ -8,7 +8,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" th:href="@{/assets/dist/style.css}" href="./assets/dist/style.css" />
-    <script th:src="@{/assets/dist/main.iife.js}"></script>
+    <!-- data-cfasync is for Rocket Loader by Cloudflare who ruins this script -->
+    <script data-cfasync="false" th:src="@{/assets/dist/main.iife.js}"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title th:text="${headtitle}"></title>
