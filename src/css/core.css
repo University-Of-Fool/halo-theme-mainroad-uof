@@ -143,7 +143,7 @@ body {
   height: 100%;
 }
 
-.archive-month > div {
+.archive-month>div {
   display: flex;
 }
 
@@ -373,14 +373,14 @@ body {
   }
 }
 
-.moments_content .moments_html .main_medium > div {
+.moments_content .moments_html .main_medium>div {
   --tw-aspect-w: 1;
   --tw-aspect-h: 1;
   padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
   position: relative;
 }
 
-.moments_content .moments_html .main_medium > div * {
+.moments_content .moments_html .main_medium>div * {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -390,7 +390,7 @@ body {
   left: 0;
 }
 
-.moments_content .moments_html .main_medium > div video {
+.moments_content .moments_html .main_medium>div video {
   object-fit: cover;
   border-radius: 0.5rem;
   -webkit-border-radius: 0.5rem;
@@ -399,20 +399,20 @@ body {
   -o-border-radius: 0.5rem;
 }
 
-.moments_content .moments_html .main_medium > div .icon {
+.moments_content .moments_html .main_medium>div .icon {
   width: 2rem;
   height: 2rem;
   margin: auto auto;
 }
 
-.moments_content .moments_html .main_medium > div .icon_controls {
+.moments_content .moments_html .main_medium>div .icon_controls {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
-.moments_content .moments_html .main_medium > div .icon_controls:hover {
+.moments_content .moments_html .main_medium>div .icon_controls:hover {
   opacity: 0.7;
 }
 
@@ -437,7 +437,7 @@ body {
   font-weight: 300;
 }
 
-.moments_content .moments_html .tool-bar > div {
+.moments_content .moments_html .tool-bar>div {
   display: flex;
   gap: 0.25rem;
 }
@@ -496,7 +496,7 @@ body {
   cursor: pointer;
 }
 
-.image-box > img {
+.image-box>img {
   /* max-width: 90vw; */
   max-width: 95vw;
   max-height: 90vh;
@@ -705,15 +705,15 @@ textarea {
   transition: background-color 0.25s ease-out;
 }
 
-.menu__list > li {
+.menu__list>li {
   transition: background-color 0.25s ease-out;
 }
 
-.menu__list > li:hover {
+.menu__list>li:hover {
   background: var(--highlightColor);
 }
 
-.menu__list > li:first-child {
+.menu__list>li:first-child {
   border: 0;
 }
 
@@ -1055,11 +1055,11 @@ select {
   user-select: none;
 }
 
-:focus > .menu__btn-title {
+:focus>.menu__btn-title {
   box-shadow: inset 0 0 1px 3px var(--highlightColor);
 }
 
-button:not(:-moz-focusring):focus > .menu__btn-title {
+button:not(:-moz-focusring):focus>.menu__btn-title {
   box-shadow: none;
 }
 
@@ -1151,7 +1151,7 @@ button:not(:-moz-focusring):focus > .menu__btn-title {
     border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .menu__list > li {
+  .menu__list>li {
     border-left: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
@@ -1215,8 +1215,74 @@ button:not(:-moz-focusring):focus > .menu__btn-title {
   padding: 5px 0;
   margin-top: 10px;
   margin-top: 0.625rem;
-  border-top: 1px dotted #ebebeb;
-  border-bottom: 1px dotted #ebebeb;
+}
+
+@media(prefers-color-scheme: dark) {
+  .post__meta-box {
+    border-color: #333;
+    color: #333;
+
+    .post__meta-avatar img {
+      filter: brightness(80%);
+    }
+
+    .post__meta-author-info {
+      color: #ccc;
+
+      .post__meta-author-name {
+        color: #eee;
+      }
+    }
+  }
+}
+
+@media(prefers-color-scheme: light) {
+  .post__meta-box {
+    border-color: #ddd;
+    color: #ddd;
+
+    .post__meta-author-info {
+      color: #555;
+
+      .post__meta-author-name {
+        color: #222;
+      }
+    }
+  }
+}
+
+.post__meta-box {
+  border: 1px solid;
+
+  .post__meta-innerbox {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 15px;
+    align-items: center;
+  }
+
+  .post__meta-avatar img {
+    height: 4.5rem;
+    border-radius: 10%;
+  }
+
+  .post__meta-author-divider {
+    width: 2px;
+    height: 4.5rem;
+    background-color: var(--highlightColor);
+    margin: 0 15px;
+  }
+
+  .post__meta-author-info {
+    display: flex;
+    flex-direction: column;
+
+    .post__meta-author-name {
+      font-family: var(--font-sans);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
 }
 
 .post__lead {
@@ -1854,6 +1920,7 @@ textarea {
 }
 
 @media screen and (max-width: 620px) {
+
   input[type="text"],
   input[type="email"],
   input[type="tel"],
@@ -1929,6 +1996,7 @@ textarea {
   }
 
   .container.container--outer {
+
     .header,
     .wrapper {
       background: #222;
@@ -1954,10 +2022,10 @@ textarea {
       color: #bbb;
     }
 
-    :is(div.post__meta.meta) {
+    /* :is(div.post__meta.meta) {
       border-top-color: #444;
       border-bottom-color: #444;
-    }
+    } */
 
     :is(a) {
       color: #ddd;

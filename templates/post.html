@@ -11,17 +11,27 @@
             <h1 class="post__title" th:text="${post.spec.title}"></h1>
             <p class="post__lead"></p>
             <div class="post__meta meta">
-              <div class="meta__item-datetime meta__item">
-                <svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28">
-                  <path
-                    d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"
-                  ></path>
-                </svg>
-                <time
-                  class="meta__text"
-                  th:datetime="${post.spec.publishTime}"
-                  th:text="${#dates.format(post.spec.publishTime,'yyyy-MM-dd HH:mm:ss')}"
-                ></time>
+              <div class="post__meta-box">
+                <div class="post__meta-innerbox">
+                  <div th:if="${post.owner.avatar != null}" class="post__meta-avatar">
+                    <img
+                      class="post__meta-avatar-img"
+                      th:alt="${post.owner.displayName}"
+                      th:src="@{${post.owner.avatar}}"
+                    />
+                  </div>
+                  <div class="post__meta-author-divider"></div>
+                  <div class="post__meta-author-info">
+                    <span class="post__meta-author-name" th:text="${post.owner.displayName}"></span>
+                    <span th:text="${post.owner.bio ?: '这个作者没有填写个性签名…'}"></span>
+                    <span class="post__meta-time"
+                      ><time
+                        th:datetime="${post.spec.publishTime}"
+                        th:text="${#dates.format(post.spec.publishTime,'yyyy-MM-dd HH:mm:ss')}"
+                      ></time
+                    ></span>
+                  </div>
+                </div>
               </div>
             </div>
           </header>
