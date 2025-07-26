@@ -1,7 +1,7 @@
 :root {
   --highlightColor: #b22121;
-  --font-serif: "Libre Baskerville", "Noto Serif SC", serif;
-  --font-sans: "Red Hat Display", "Noto Sans TC", sans-serif;
+  --font-serif: var(--font-sans);
+  --font-sans: "Red Hat Display", "Noto Sans SC", sans-serif;
   --fontFamilyPrimary: var(--font-serif);
   --fontFamilySecondary: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   color-scheme: light dark;
