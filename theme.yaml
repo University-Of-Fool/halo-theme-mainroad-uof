@@ -13,5 +13,5 @@ spec:
   repo: https://github.com/Universityu-Of-Fool/halo-theme-mainroad-uof.git
   settingName: "theme-mainroad-setting"
   configMapName: "theme-mainroad-configMap"
-  version: 1.2.1
+  version: 1.2.2
   require: ">=2.0.0"
