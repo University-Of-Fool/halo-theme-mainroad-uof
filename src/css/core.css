@@ -55,8 +55,6 @@ html {
 body {
   margin: 0;
   font-family: var(--fontFamilyPrimary);
-  font-size: 14px;
-  font-size: 0.875rem;
   line-height: 1.6;
   word-wrap: break-word;
   background: var(--highlightColor);
